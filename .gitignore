@@ -1,0 +1,28 @@
+# Environment variables (SECURITY)
+.env
+*.env
+backend/.env
+frontend/.env.local
+frontend/.env
+
+# Node.js
+node_modules/
+frontend/node_modules/
+
+# Next.js build output
+.next/
+frontend/.next/
+frontend/tsconfig.tsbuildinfo
+
+# Go binaries
+backend/*.exe
+*.exe
+
+# Development logs & AI context
+.claude/
+briefing.txt
+caption.txt
+
+# OS files
+.DS_Store
+Thumbs.db

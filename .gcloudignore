@@ -1,0 +1,28 @@
+# Ignore development artifacts
+.claude/
+briefing.txt
+caption.txt
+README.md
+SPEC.md
+
+# Ignore sensitive environment variables
+.env
+backend/.env
+frontend/.env.local
+frontend/.env
+
+# Ignore frontend local artifacts
+frontend/node_modules/
+frontend/.next/
+frontend/tsconfig.tsbuildinfo
+
+# Ignore backend binaries (Windows .exe)
+backend/*.exe
+
+# Ignore standard git files
+.git/
+.gitignore
+
+# Ignore other common junk
+.DS_Store
+*.log
