@@ -29,6 +29,9 @@ interface AnalysisResponse {
     totalFiles: number
     languages: string[]
     summary: string
+    promptTokens: number
+    candidateTokens: number
+    totalTokens: number
   }
 }
 

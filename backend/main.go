@@ -37,9 +37,12 @@ type AnalysisEdge struct {
 }
 
 type AnalysisMetadata struct {
-	TotalFiles int      `json:"totalFiles"`
-	Languages  []string `json:"languages"`
-	Summary    string   `json:"summary"`
+	TotalFiles      int      `json:"totalFiles"`
+	Languages       []string `json:"languages"`
+	Summary         string   `json:"summary"`
+	PromptTokens    int      `json:"promptTokens"`
+	CandidateTokens int      `json:"candidateTokens"`
+	TotalTokens     int      `json:"totalTokens"`
 }
 
 type AnalysisResponse struct {
@@ -250,6 +253,11 @@ Return only the JSON response:`, code)
 				} `json:"parts"`
 			} `json:"content"`
 		} `json:"candidates"`
+		UsageMetadata struct {
+			PromptTokenCount    int `json:"promptTokenCount"`
+			CandidateTokenCount int `json:"candidateTokenCount"`
+			TotalTokenCount     int `json:"totalTokenCount"`
+		} `json:"usageMetadata"`
 	}
 
 	if err := json.Unmarshal(respBody, &geminiResp); err != nil {
@@ -272,6 +280,11 @@ Return only the JSON response:`, code)
 	if err := json.Unmarshal([]byte(responseText), &result); err != nil {
 		return nil, fmt.Errorf("failed to parse analysis result: %w", err)
 	}
+
+	// Attach usage metadata
+	result.Metadata.PromptTokens = geminiResp.UsageMetadata.PromptTokenCount
+	result.Metadata.CandidateTokens = geminiResp.UsageMetadata.CandidateTokenCount
+	result.Metadata.TotalTokens = geminiResp.UsageMetadata.TotalTokenCount
 
 	return &result, nil
 }

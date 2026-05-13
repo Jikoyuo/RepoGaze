@@ -58,6 +58,9 @@ interface AnalysisResponse {
     totalFiles: number
     languages: string[]
     summary: string
+    promptTokens: number
+    candidateTokens: number
+    totalTokens: number
   }
 }
 
@@ -501,6 +504,25 @@ export default function ArchitectureGraph({ data }: ArchitectureGraphProps) {
                 value={data.metadata.languages.length}
                 icon={<Workflow className="w-3.5 h-3.5" />}
               />
+              <div className="col-span-2">
+                <div className="bg-paper border border-paper-200 rounded-xl p-3.5 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-3.5 h-3.5 text-vermillion" />
+                    <span className="label-mono text-ink-mute">AI Context</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="text-right">
+                      <p className="label-mono text-[10px] text-ink-faint">Prompt</p>
+                      <p className="font-mono text-sm font-bold text-ink">{data.metadata.promptTokens?.toLocaleString() || 0}</p>
+                    </div>
+                    <div className="w-px h-8 bg-paper-200" />
+                    <div className="text-right">
+                      <p className="label-mono text-[10px] text-ink-faint">Tokens</p>
+                      <p className="font-mono text-sm font-bold text-vermillion">{data.metadata.totalTokens?.toLocaleString() || 0}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
