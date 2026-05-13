@@ -181,14 +181,14 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full blueprint-grid-dark overflow-hidden select-none"
+      className="relative w-full h-full paper-texture overflow-hidden select-none border-t border-paper-200"
     >
       {/* Vignette + warm gradient overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at center, transparent 0%, rgba(14,21,37,0.4) 60%, rgba(14,21,37,0.85) 100%)',
+            'radial-gradient(ellipse at center, transparent 0%, rgba(226, 88, 34, 0.03) 60%, rgba(234, 224, 201, 0.3) 100%)',
         }}
       />
 
@@ -209,9 +209,9 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
                 y1={node.y}
                 x2={next.x}
                 y2={next.y}
-                stroke="rgba(15,157,139,0.45)"
-                strokeWidth="1"
-                strokeDasharray="3 3"
+                stroke="rgba(14,21,37,0.15)"
+                strokeWidth="1.5"
+                strokeDasharray="4 4"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
                 transition={{ duration: 0.8 }}
@@ -227,7 +227,7 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
                     cx={node.x}
                     cy={node.y}
                     r={4}
-                    fill="#0F9D8B"
+                    fill="#2A3447"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 250, damping: 18 }}
@@ -237,7 +237,7 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
                     cy={node.y}
                     r={14}
                     fill="none"
-                    stroke="rgba(15,157,139,0.35)"
+                    stroke="rgba(14,21,37,0.1)"
                     strokeWidth="1"
                     initial={{ scale: 0 }}
                     animate={{ scale: [1, 1.6], opacity: [0.6, 0] }}
@@ -259,12 +259,12 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
         >
           <svg width="320" height="320" viewBox="-160 -160 320 320">
             {/* outer ring */}
-            <circle cx="0" cy="0" r="140" fill="none" stroke="rgba(15,157,139,0.25)" strokeWidth="1" strokeDasharray="2 6" />
-            <circle cx="0" cy="0" r="100" fill="none" stroke="rgba(226,88,34,0.20)" strokeWidth="1" />
-            <circle cx="0" cy="0" r="60" fill="none" stroke="rgba(245,158,11,0.18)" strokeWidth="1" strokeDasharray="4 4" />
+            <circle cx="0" cy="0" r="140" fill="none" stroke="rgba(14,21,37,0.08)" strokeWidth="1" strokeDasharray="2 6" />
+            <circle cx="0" cy="0" r="100" fill="none" stroke="rgba(226,88,34,0.12)" strokeWidth="1" />
+            <circle cx="0" cy="0" r="60" fill="none" stroke="rgba(14,21,37,0.06)" strokeWidth="1" strokeDasharray="4 4" />
             {/* compass crosshair */}
-            <line x1="-140" y1="0" x2="140" y2="0" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <line x1="0" y1="-140" x2="0" y2="140" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            <line x1="-140" y1="0" x2="140" y2="0" stroke="rgba(14,21,37,0.05)" strokeWidth="1" />
+            <line x1="0" y1="-140" x2="0" y2="140" stroke="rgba(14,21,37,0.05)" strokeWidth="1" />
             {/* tick marks */}
             {Array.from({ length: 24 }).map((_, i) => {
               const a = (i / 24) * Math.PI * 2
@@ -272,7 +272,7 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
               const y1 = Math.sin(a) * 134
               const x2 = Math.cos(a) * 140
               const y2 = Math.sin(a) * 140
-              return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+              return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(14,21,37,0.12)" strokeWidth="1" />
             })}
           </svg>
         </motion.div>
@@ -325,13 +325,13 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
             exit={{ opacity: 0, y: -10, filter: 'blur(8px)' }}
             transition={{ duration: 0.5 }}
           >
-            <p className="label-mono text-kelp-400 mb-2">
+            <p className="label-mono text-vermillion mb-2">
               ◐ Phase {phaseIndex + 1} of {PHASES.length}
             </p>
-            <h3 className="serif-italic text-4xl text-paper-50 mb-1">
+            <h3 className="serif-italic text-4xl text-ink mb-1">
               {phase.label}
             </h3>
-            <p className="text-sm text-paper-100/70">{phase.detail}</p>
+            <p className="text-sm text-ink-soft">{phase.detail}</p>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -351,7 +351,7 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
                 width: token.size,
                 height: token.size,
                 background: color.bg,
-                boxShadow: `0 0 24px ${color.soft}, inset 0 -3px 0 rgba(14,21,37,0.18)`,
+                boxShadow: `0 8px 32px ${color.soft}, inset 0 -3px 0 rgba(14,21,37,0.1)`,
                 transform: `translate(-50%, -50%) rotate(${token.rotation}deg)`,
                 fontSize: token.size * 0.28,
               }}
@@ -397,7 +397,7 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
               )
             })}
             <motion.div
-              className="absolute -translate-x-1/2 -translate-y-1/2 label-mono text-paper-50 whitespace-nowrap"
+              className="absolute -translate-x-1/2 -translate-y-1/2 label-mono text-ink-soft whitespace-nowrap"
               initial={{ opacity: 1, y: 0, scale: 1 }}
               animate={{ opacity: 0, y: -30, scale: 1.2 }}
               transition={{ duration: 0.6 }}
@@ -434,13 +434,13 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
 
       {/* Hint chip — top left */}
       <motion.div
-        className="absolute top-6 left-6 px-4 py-2.5 rounded-xl bg-paper-50/10 backdrop-blur border border-paper-50/15 max-w-xs"
+        className="absolute top-6 left-6 px-4 py-2.5 rounded-xl bg-paper-50/40 backdrop-blur-sm border border-paper-200/50 max-w-xs"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5 }}
       >
-        <p className="label-mono text-kelp-400 mb-1">◇ While you wait</p>
-        <p className="text-sm text-paper-100/80 leading-snug">
+        <p className="label-mono text-vermillion mb-1">◇ While you wait</p>
+        <p className="text-sm text-ink-soft leading-snug">
           Pop the floating code tokens for points. Big bundles take longer to map.
         </p>
       </motion.div>
@@ -449,14 +449,14 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
       <div className="absolute bottom-0 left-0 right-0 p-6">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center justify-between mb-3">
-            <p className="label-mono text-paper-50/70">
+            <p className="label-mono text-ink-mute">
               {Math.round(progress)}% · {elapsed.toFixed(1)}s elapsed
             </p>
-            <p className="label-mono text-paper-50/70">
+            <p className="label-mono text-ink-mute">
               {tokens.length} tokens drifting
             </p>
           </div>
-          <div className="relative h-1.5 bg-paper-50/10 rounded-full overflow-hidden">
+          <div className="relative h-1.5 bg-paper-200 rounded-full overflow-hidden">
             <motion.div
               className="absolute inset-y-0 left-0 rounded-full"
               style={{
@@ -475,12 +475,12 @@ export default function NeuralPulse({ isActive }: NeuralPulseProps) {
                       ? 'bg-kelp'
                       : progress >= p.minPct
                         ? 'bg-vermillion'
-                        : 'bg-paper-50/15'
+                        : 'bg-paper-200'
                   }`}
                 />
                 <p
                   className={`label-mono text-[9px] truncate transition-colors ${
-                    progress >= p.minPct ? 'text-paper-50/80' : 'text-paper-50/30'
+                    progress >= p.minPct ? 'text-ink-soft' : 'text-ink-faint'
                   }`}
                 >
                   0{i + 1} · {p.label}
