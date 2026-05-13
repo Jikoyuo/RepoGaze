@@ -51,10 +51,10 @@ export default function Home() {
     try {
       const formData = new FormData()
       files.forEach((file) => formData.append('files', file))
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
-
-      if (!apiUrl && typeof window !== 'undefined') {
-        console.error("API URL is missing! Make sure NEXT_PUBLIC_API_URL is set in Cloud Run.")
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://repogaze-190510194175.asia-southeast1.run.app'
+      
+      if (!process.env.NEXT_PUBLIC_API_URL) {
+        console.log("Using hardcoded fallback API URL")
       }
 
       const response = await fetch(`${apiUrl}/api/analyze`, {
@@ -84,7 +84,7 @@ export default function Home() {
     setShowNeural(true)
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://repogaze-190510194175.asia-southeast1.run.app'
 
       const fetchResponse = await fetch(`${apiUrl}/api/github`, {
         method: 'POST',
