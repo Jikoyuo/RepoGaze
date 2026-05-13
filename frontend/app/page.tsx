@@ -51,9 +51,8 @@ export default function Home() {
     try {
       const formData = new FormData()
       files.forEach((file) => formData.append('files', file))
-
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
-      
+
       if (!apiUrl && typeof window !== 'undefined') {
         console.error("API URL is missing! Make sure NEXT_PUBLIC_API_URL is set in Cloud Run.")
       }
