@@ -52,7 +52,12 @@ export default function Home() {
       const formData = new FormData()
       files.forEach((file) => formData.append('files', file))
 
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
+      
+      if (!apiUrl && typeof window !== 'undefined') {
+        console.error("API URL is missing! Make sure NEXT_PUBLIC_API_URL is set in Cloud Run.")
+      }
+
       const response = await fetch(`${apiUrl}/api/analyze`, {
         method: 'POST',
         body: formData,
@@ -80,7 +85,7 @@ export default function Home() {
     setShowNeural(true)
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
 
       const fetchResponse = await fetch(`${apiUrl}/api/github`, {
         method: 'POST',
