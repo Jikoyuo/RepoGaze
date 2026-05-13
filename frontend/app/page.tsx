@@ -55,7 +55,7 @@ export default function Home() {
       const formData = new FormData()
       files.forEach((file) => formData.append('files', file))
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://repogaze-190510194175.asia-southeast1.run.app'
-      
+
       if (!process.env.NEXT_PUBLIC_API_URL) {
         console.log("Using hardcoded fallback API URL")
       }
@@ -178,14 +178,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <a
-              href="#how-it-works"
-              className="hidden sm:flex items-center gap-2 px-3.5 py-2 text-sm text-ink-soft hover:text-ink hover:bg-paper-100 rounded-xl transition-all"
-            >
-              <BookOpen className="w-4 h-4" />
-              <span>Docs</span>
-            </a>
-            <a
-              href="https://github.com/"
+              href="https://github.com/Jikoyuo/RepoGaze"
               className="flex items-center gap-2 px-3.5 py-2 text-sm bg-ink text-paper-50 rounded-xl hover:bg-ink-soft transition-all shadow-paper"
             >
               <Github className="w-4 h-4" />
@@ -204,7 +197,7 @@ export default function Home() {
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 bg-paper-50 border border-paper-200 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-kelp animate-pulse" />
                   <span className="label-mono text-ink-soft">
-                    Powered by Gemini · Built for Google Challenge 2026
+                    Powered by Google · Built for Google Challenge 2026
                   </span>
                 </div>
 
@@ -352,10 +345,9 @@ export default function Home() {
             </span>
           </div>
           <div className="flex items-center gap-5 label-mono text-ink-faint">
-            <a href="#" className="hover:text-ink-soft transition-colors">Privacy</a>
-            <a href="#" className="hover:text-ink-soft transition-colors">Terms</a>
+            <a href="#" className="hover:text-ink-soft transition-colors">#JuaraVibeCoding!</a>
             <span className="flex items-center gap-1.5">
-              Powered by <span className="text-vermillion">Gemini</span>
+              Powered by <span className="text-vermillion">Google</span>
             </span>
           </div>
         </div>
