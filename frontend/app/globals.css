@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #FBF7EE;
+  --paper-50: #FEFCF7;
+  --paper-100: #F6F0E1;
+  --paper-200: #EAE0C9;
+  --ink: #0E1525;
+  --ink-soft: #2A3447;
+  --ink-mute: #6B7280;
+  --ink-faint: #A4ACBE;
+  --vermillion: #E25822;
+  --vermillion-soft: #FDEDE3;
+  --kelp: #0F9D8B;
+  --kelp-soft: #E2F5F2;
+  --amber: #F59E0B;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+/* Workshop paper texture — subtle noise + warm grain */
+.paper-texture {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(226, 88, 34, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(15, 157, 139, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(245, 158, 11, 0.03) 0%, transparent 40%);
+}
+
+/* Blueprint grid overlay — used for canvas and loading screens */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(14, 21, 37, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 21, 37, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.blueprint-grid-dark {
+  background-color: #0E1525;
+  background-image:
+    linear-gradient(rgba(15, 157, 139, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 157, 139, 0.10) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Dashed corner brackets — workshop annotation look */
+.corner-brackets {
+  position: relative;
+}
+.corner-brackets::before,
+.corner-brackets::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--ink);
+  opacity: 0.35;
+}
+.corner-brackets::before {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.corner-brackets::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+/* Serif headline italic helper */
+.serif-italic {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Mono caps label */
+.label-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Reusable paper card */
+.paper-card {
+  background: var(--paper-50);
+  border: 1px solid var(--paper-200);
+  box-shadow: 0 1px 0 rgba(14, 21, 37, 0.04), 0 8px 24px -12px rgba(14, 21, 37, 0.16);
+}
+
+/* React Flow overrides */
+.react-flow {
+  background: transparent;
+}
+.react-flow__node {
+  cursor: pointer;
+}
+.react-flow__edge-path {
+  stroke-width: 1.75;
+}
+.react-flow__attribution {
+  display: none !important;
+}
+.react-flow__controls {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+.react-flow__controls-button {
+  background: var(--paper-50) !important;
+  border-bottom: 1px solid var(--paper-200) !important;
+  color: var(--ink-soft) !important;
+}
+.react-flow__controls-button:hover {
+  background: var(--paper-100) !important;
+}
+.react-flow__minimap {
+  background: var(--paper-50) !important;
+  border: 1px solid var(--paper-200);
+}
+
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.edge-animated {
+  stroke-dasharray: 6 4;
+  animation: flowDash 1.2s linear infinite;
+}
+
+/* Token pop animation for the playground */
+@keyframes tokenPop {
+  0% { transform: scale(1); opacity: 1; }
+  60% { transform: scale(1.6); opacity: 0.5; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.token-pop {
+  animation: tokenPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Subtle ink underline used in headlines */
+.ink-underline {
+  background-image: linear-gradient(to right, var(--vermillion) 0, var(--vermillion) 100%);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 3px;
+  padding-bottom: 2px;
+}
+
+/* Hide scrollbar but allow scroll inside detail panel */
+.detail-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.detail-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.detail-scroll::-webkit-scrollbar-thumb {
+  background: var(--paper-200);
+  border-radius: 3px;
+}
+.detail-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
+
+/* Legacy classes kept so older components keep working */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.glass-dark {
+  background: rgba(14, 21, 37, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(14, 21, 37, 0.08);
+}
+.gradient-text {
+  background: linear-gradient(135deg, var(--vermillion) 0%, var(--amber) 60%, var(--kelp) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
